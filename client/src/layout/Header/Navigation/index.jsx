@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { checkToken } from '../../../utils/checkToken';
 import { Button } from '../../../assets/UI';
-import { Group, UserSettingsIcon } from '../styled';
+import { Group, SunIcon, UserSettingsIcon } from '../styled';
 import { MOBILE_MENU_WIDTH } from '../../../config/constants';
 
 function Navigation() {
@@ -37,6 +37,7 @@ function Navigation() {
         )}
       </Group>
       <UserSettingsIcon onClick={() => setMobileMenu(!mobileMenu)} />
+      <SunIcon />
     </Group>
   );
 }

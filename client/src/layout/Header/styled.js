@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { RiSearchLine, RiUserSettingsLine } from 'react-icons/ri';
+import { RiSearchLine, RiUserSettingsLine, RiSunLine } from 'react-icons/ri';
 
 export const Wrapper = styled.header`
   display: flex;
@@ -11,26 +11,40 @@ export const Wrapper = styled.header`
   box-shadow: 0px 5px 15px 5px ${({ theme }) => theme.color.background.primary};
 
   @media (max-width: ${({ theme }) => theme.breakpoint.large}px) {
-    padding: 20px 12%;
+    padding: 20px 10%;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.big}px) {
-    padding: 20px 9%;
+    padding: 20px 5%;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.medium}px) {
-    padding: 20px 6%;
+    padding: 20px 20px;
   }
 `;
 
 export const Group = styled.div`
   display: flex;
+  align-items: center;
   gap: 20px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}px) {
+    gap: 15px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.small}px) {
+    gap: 20px;
+  }
 
   ${({ searchGroup }) =>
     searchGroup &&
     css`
+      align-items: unset;
       gap: unset;
+
+      @media (max-width: ${({ theme }) => theme.breakpoint.medium}px) {
+        gap: unset;
+      }
     `}
 
   ${({ mobileMenu }) =>
@@ -40,7 +54,7 @@ export const Group = styled.div`
       top: 100px;
       right: 20px;
       flex-direction: column;
-      padding: 40px 20px;
+      padding: 30px 15px;
       background: ${({ theme }) => theme.color.background.secondary};
       box-shadow: 0px 5px 15px 5px
         ${({ theme }) => theme.color.background.primary};
@@ -98,5 +112,29 @@ export const UserSettingsIcon = styled(RiUserSettingsLine)`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}px) {
     display: unset;
+  }
+
+  &:hover {
+    filter: brightness(120%);
+    cursor: pointer;
+  }
+
+  &:active {
+    filter: brightness(130%);
+  }
+`;
+
+export const SunIcon = styled(RiSunLine)`
+  color: ${({ theme }) => theme.color.accent.primary};
+  font-size: 2rem;
+  transition: filter 0.3s;
+
+  &:hover {
+    filter: brightness(120%);
+    cursor: pointer;
+  }
+
+  &:active {
+    filter: brightness(130%);
   }
 `;
