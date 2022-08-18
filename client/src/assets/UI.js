@@ -19,6 +19,22 @@ export const Button = styled.button`
       border: 2px solid ${({ theme }) => theme.color.accent.primary};
     `}
 
+  ${({ navBtn }) =>
+    navBtn &&
+    css`
+      @media (max-width: ${({ theme }) => theme.breakpoint.small}px) {
+        display: none;
+      }
+    `}
+
+    ${({ mobileMenu }) =>
+    mobileMenu &&
+    css`
+      @media (max-width: ${({ theme }) => theme.breakpoint.small}px) {
+        display: unset;
+      }
+    `}
+
   &:hover {
     filter: brightness(120%);
     cursor: pointer;
