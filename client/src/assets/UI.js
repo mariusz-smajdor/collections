@@ -39,4 +39,8 @@ export const Button = styled.button`
     filter: brightness(120%);
     cursor: pointer;
   }
+
+  &:active {
+    filter: brightness(130%);
+  }
 `;
