@@ -2,7 +2,7 @@ import { Group, SearchButton, SearchField, SearchIcon } from '../styled';
 
 function Search() {
   return (
-    <Group>
+    <Group searchGroup>
       <SearchButton>
         <SearchIcon />
       </SearchButton>
