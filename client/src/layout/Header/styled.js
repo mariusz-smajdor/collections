@@ -1,10 +1,11 @@
-import styled from 'styled-components';
-import { RiSearchLine } from 'react-icons/ri';
+import styled, { css } from 'styled-components';
+import { RiSearchLine, RiUserSettingsLine } from 'react-icons/ri';
 
 export const Wrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   padding: 20px 15%;
   background: ${({ theme }) => theme.color.background.secondary};
   box-shadow: 0px 5px 15px 5px ${({ theme }) => theme.color.background.primary};
@@ -24,6 +25,31 @@ export const Wrapper = styled.header`
 
 export const Group = styled.div`
   display: flex;
+  gap: 20px;
+
+  ${({ searchGroup }) =>
+    searchGroup &&
+    css`
+      gap: unset;
+    `}
+
+  ${({ mobileMenu }) =>
+    mobileMenu &&
+    css`
+      position: absolute;
+      top: 100px;
+      right: 20px;
+      flex-direction: column;
+      padding: 40px 20px;
+      background: ${({ theme }) => theme.color.background.secondary};
+      box-shadow: 0px 5px 15px 5px
+        ${({ theme }) => theme.color.background.primary};
+      border-radius: 20px;
+    `}
+`;
+
+export const SearchIcon = styled(RiSearchLine)`
+  transition: filter 0.3s;
 `;
 
 export const SearchButton = styled.button`
@@ -34,10 +60,18 @@ export const SearchButton = styled.button`
   border: 1px solid ${({ theme }) => theme.color.text.secondary};
   border-right: unset;
   border-radius: 5px 0 0 5px;
+  cursor: pointer;
+
+  &:hover {
+    ${SearchIcon} {
+      filter: brightness(120%);
+    }
+  }
 `;
 
 export const SearchField = styled.input`
   padding: 10px 15px;
+  width: 100%;
   background: ${({ theme }) => theme.color.background.tertiary};
   color: ${({ theme }) => theme.color.text.primary};
   border: 1px solid ${({ theme }) => theme.color.text.secondary};
@@ -50,4 +84,13 @@ export const SearchField = styled.input`
   }
 `;
 
-export const SearchIcon = styled(RiSearchLine)``;
+export const UserSettingsIcon = styled(RiUserSettingsLine)`
+  display: none;
+  color: ${({ theme }) => theme.color.accent.primary};
+  font-size: 2rem;
+  cursor: pointer;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.small}px) {
+    display: unset;
+  }
+`;
