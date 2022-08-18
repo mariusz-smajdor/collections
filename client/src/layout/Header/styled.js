@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { RiSearchLine, RiUserSettingsLine, RiSunLine } from 'react-icons/ri';
+import { RiSearchLine, RiUserSettingsLine } from 'react-icons/ri';
 
 export const Wrapper = styled.header`
   display: flex;
@@ -124,7 +124,7 @@ export const UserSettingsIcon = styled(RiUserSettingsLine)`
   }
 `;
 
-export const SunIcon = styled(RiSunLine)`
+export const ThemeIcon = styled.p`
   color: ${({ theme }) => theme.color.accent.primary};
   font-size: 2rem;
   transition: filter 0.3s;

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { RiSunLine, RiMoonLine } from 'react-icons/ri';
 
 import { changeTheme } from '../../../services/themeSlice';
 import { getLocalStorageItem } from '../../../utils/getLocalStorageItem';
 import { Button } from '../../../assets/UI';
-import { Group, SunIcon, UserSettingsIcon } from '../styled';
+import { Group, ThemeIcon, UserSettingsIcon } from '../styled';
 import {
   MOBILE_MENU_WIDTH,
   LIGHT_THEME,
@@ -52,7 +53,11 @@ function Navigation() {
         )}
       </Group>
       <UserSettingsIcon onClick={() => setMobileMenu(!mobileMenu)} />
-      <SunIcon onClick={handleDispatch} />
+      {theme === LIGHT_THEME ? (
+        <ThemeIcon as={RiMoonLine} onClick={handleDispatch} />
+      ) : (
+        <ThemeIcon as={RiSunLine} onClick={handleDispatch} />
+      )}
     </Group>
   );
 }
