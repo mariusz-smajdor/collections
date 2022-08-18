@@ -67,6 +67,12 @@ export const SearchButton = styled.button`
       filter: brightness(120%);
     }
   }
+
+  &:active {
+    ${SearchIcon} {
+      filter: brightness(140%);
+    }
+  }
 `;
 
 export const SearchField = styled.input`
