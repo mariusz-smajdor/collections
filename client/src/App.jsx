@@ -2,11 +2,13 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './assets/GlobalStyle';
 import { theme } from './assets/theme';
 
+import Header from './layout/Header';
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <h1>Hello, World!</h1>
+      <Header />
     </ThemeProvider>
   );
 }
