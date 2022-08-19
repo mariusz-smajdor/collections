@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { useSelector } from 'react-redux';
 
-import Header from './layout/Header';
+import Header from './common/layout/Header';
 import { GlobalStyle } from './assets/GlobalStyle';
 import { lightTheme, darkTheme } from './assets/theme';
 

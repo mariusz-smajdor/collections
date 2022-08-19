@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RiSunLine, RiMoonLine } from 'react-icons/ri';
 
-import { Button } from '../../../assets/UI';
-import { changeTheme } from '../../../services/themeSlice';
-import { getLocalStorageItem } from '../../../shared/utils/getLocalStorageItem';
-import { themeKeys } from '../../../shared/constants/themeKeys';
-import { localStorageKeys } from '../../../shared/constants/localStorageKeys';
+import { Button } from '../../../../assets/UI';
+import { changeTheme } from '../../../../services/themeSlice';
+import { getLocalStorageItem } from '../../../../shared/utils/getLocalStorageItem';
+import { themeKeys } from '../../../../shared/constants/themeKeys';
+import { localStorageKeys } from '../../../../shared/constants/localStorageKeys';
 import { Group, ThemeIcon, UserSettingsIcon } from '../styled';
 
 const { LIGHT, DARK } = themeKeys;
