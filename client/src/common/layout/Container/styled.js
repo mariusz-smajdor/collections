@@ -11,7 +11,7 @@ export const InnerContainer = styled.div`
   justify-content: center;
   gap: 20px;
   margin: auto;
-  padding: 0 20px;
+  padding: 50px 30px;
   max-width: ${({ theme }) => theme.breakpoint.small}px;
   border-radius: 20px;
   background: ${({ theme }) => theme.color.background.secondary};
