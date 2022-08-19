@@ -47,8 +47,8 @@ export const Group = styled.div`
       }
     `}
 
-  ${({ mobileMenu }) =>
-    mobileMenu &&
+  ${({ $mobileMenu }) =>
+    $mobileMenu &&
     css`
       position: absolute;
       top: 100px;

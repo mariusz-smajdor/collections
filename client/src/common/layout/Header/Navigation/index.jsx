@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { RiSunLine, RiMoonLine } from 'react-icons/ri';
 
 import { Button } from '../../../../assets/UI';
@@ -7,8 +8,10 @@ import { changeTheme } from '../../../../services/themeSlice';
 import { getLocalStorageItem } from '../../../../shared/utils/getLocalStorageItem';
 import { themeKeys } from '../../../../shared/constants/themeKeys';
 import { localStorageKeys } from '../../../../shared/constants/localStorageKeys';
+import { routes } from '../../../../shared/constants/routes';
 import { Group, ThemeIcon, UserSettingsIcon } from '../styled';
 
+const { REGISTER } = routes;
 const { LIGHT, DARK } = themeKeys;
 const { THEME, TOKEN } = localStorageKeys;
 const MOBILE_MENU_WIDTH = 575;
@@ -35,18 +38,24 @@ function Navigation() {
 
   return (
     <Group>
-      <Group mobileMenu={mobileMenu}>
+      <Group $mobileMenu={mobileMenu}>
         {!getLocalStorageItem(TOKEN) ? (
           <>
-            <Button outlined navBtn mobileMenu={mobileMenu}>
+            <Button
+              $outlined
+              $navBtn
+              $mobileMenu={mobileMenu}
+              as={Link}
+              to={REGISTER}
+            >
               Sign Up
             </Button>
-            <Button navBtn mobileMenu={mobileMenu}>
+            <Button $navBtn $mobileMenu={mobileMenu}>
               Sign In
             </Button>
           </>
         ) : (
-          <Button navBtn mobileMenu={mobileMenu}>
+          <Button $navBtn $mobileMenu={mobileMenu}>
             Sign Out
           </Button>
         )}

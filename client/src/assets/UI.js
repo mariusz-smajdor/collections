@@ -11,24 +11,24 @@ export const Button = styled.button`
   font-weight: bold;
   transition: filter 0.3s;
 
-  ${({ outlined }) =>
-    outlined &&
+  ${({ $outlined }) =>
+    $outlined &&
     css`
       background: ${({ theme }) => theme.color.background.secondary};
       color: ${({ theme }) => theme.color.accent.primary};
       border: 2px solid ${({ theme }) => theme.color.accent.primary};
     `}
 
-  ${({ navBtn }) =>
-    navBtn &&
+  ${({ $navBtn }) =>
+    $navBtn &&
     css`
       @media (max-width: ${({ theme }) => theme.breakpoint.small}px) {
         display: none;
       }
     `}
 
-    ${({ mobileMenu }) =>
-    mobileMenu &&
+    ${({ $mobileMenu }) =>
+    $mobileMenu &&
     css`
       @media (max-width: ${({ theme }) => theme.breakpoint.small}px) {
         display: unset;
