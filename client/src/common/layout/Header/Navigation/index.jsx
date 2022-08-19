@@ -11,7 +11,7 @@ import { localStorageKeys } from '../../../../shared/constants/localStorageKeys'
 import { routes } from '../../../../shared/constants/routes';
 import { Group, ThemeIcon, UserSettingsIcon } from '../styled';
 
-const { REGISTER } = routes;
+const { REGISTER, LOGIN } = routes;
 const { LIGHT, DARK } = themeKeys;
 const { THEME, TOKEN } = localStorageKeys;
 const MOBILE_MENU_WIDTH = 575;
@@ -50,7 +50,7 @@ function Navigation() {
             >
               Sign Up
             </Button>
-            <Button $navBtn $mobileMenu={mobileMenu}>
+            <Button $navBtn $mobileMenu={mobileMenu} as={Link} to={LOGIN}>
               Sign In
             </Button>
           </>
