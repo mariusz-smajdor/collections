@@ -2,17 +2,16 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RiSunLine, RiMoonLine } from 'react-icons/ri';
 
-import { changeTheme } from '../../../services/themeSlice';
-import { getLocalStorageItem } from '../../../utils/getLocalStorageItem';
 import { Button } from '../../../assets/UI';
+import { changeTheme } from '../../../services/themeSlice';
+import { getLocalStorageItem } from '../../../shared/utils/getLocalStorageItem';
+import { themeKeys } from '../../../shared/constants/themeKeys';
+import { localStorageKeys } from '../../../shared/constants/localStorageKeys';
 import { Group, ThemeIcon, UserSettingsIcon } from '../styled';
-import {
-  MOBILE_MENU_WIDTH,
-  LIGHT_THEME,
-  DARK_THEME,
-  STORAGE_KEY_THEME,
-  STORAGE_KEY_TOKEN,
-} from '../../../config/constants';
+
+const { LIGHT, DARK } = themeKeys;
+const { THEME, TOKEN } = localStorageKeys;
+const MOBILE_MENU_WIDTH = 575;
 
 function Navigation() {
   const theme = useSelector(state => state.themeToggler.theme);
@@ -29,15 +28,15 @@ function Navigation() {
   }, [width]);
 
   function handleDispatch() {
-    const currentTheme = theme === LIGHT_THEME ? DARK_THEME : LIGHT_THEME;
+    const currentTheme = theme === LIGHT ? DARK : LIGHT;
     dispatch(changeTheme(currentTheme));
-    localStorage.setItem(STORAGE_KEY_THEME, currentTheme);
+    localStorage.setItem(THEME, currentTheme);
   }
 
   return (
     <Group>
       <Group mobileMenu={mobileMenu}>
-        {!getLocalStorageItem(STORAGE_KEY_TOKEN) ? (
+        {!getLocalStorageItem(TOKEN) ? (
           <>
             <Button outlined navBtn mobileMenu={mobileMenu}>
               Sign Up
@@ -53,7 +52,7 @@ function Navigation() {
         )}
       </Group>
       <UserSettingsIcon onClick={() => setMobileMenu(!mobileMenu)} />
-      {theme === LIGHT_THEME ? (
+      {theme === LIGHT ? (
         <ThemeIcon as={RiMoonLine} onClick={handleDispatch} />
       ) : (
         <ThemeIcon as={RiSunLine} onClick={handleDispatch} />

@@ -1,10 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getLocalStorageItem } from '../utils/getLocalStorageItem';
-import { LIGHT_THEME, STORAGE_KEY_THEME } from '../config/constants';
+import { getLocalStorageItem } from '../shared/utils/getLocalStorageItem';
+import { localStorageKeys } from '../shared/constants/localStorageKeys';
+import { themeKeys } from '../shared/constants/themeKeys';
+
+const { THEME } = localStorageKeys;
+const { LIGHT } = themeKeys;
 
 const initialState = {
-  theme: getLocalStorageItem(STORAGE_KEY_THEME) || LIGHT_THEME,
+  theme: getLocalStorageItem(THEME) || LIGHT,
 };
 
 export const themeSlice = createSlice({
