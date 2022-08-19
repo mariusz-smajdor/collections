@@ -44,3 +44,20 @@ export const Button = styled.button`
     filter: brightness(130%);
   }
 `;
+
+export const Input = styled.input`
+  padding: 10px 20px;
+  width: 100%;
+  border: 1px solid ${({ theme }) => theme.color.text.secondary};
+  border-radius: 5px;
+  background: ${({ theme }) => theme.color.background.tertiary};
+  color: ${({ theme }) => theme.color.text.primary};
+  outline: unset;
+  resize: none;
+`;
+
+export const Title = styled.h2`
+  margin: 0;
+  color: ${({ theme }) => theme.color.accent.primary};
+  text-align: center;
+`;
