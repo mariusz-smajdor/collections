@@ -1,7 +1,11 @@
-import { Wrapper } from './styled';
+import { OuterContainer, InnerContainer } from './styled';
 
 function Container({ children }) {
-  return <Wrapper>{children}</Wrapper>;
+  return (
+    <OuterContainer>
+      <InnerContainer>{children}</InnerContainer>
+    </OuterContainer>
+  );
 }
 
 export default Container;
