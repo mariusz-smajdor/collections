@@ -1,18 +1,18 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Home from '../../pages/Home';
+import Register from '../../pages/Register';
 import { routes } from '../../shared/constants/routes';
 
-const { HOME } = routes;
+const { HOME, REGISTER } = routes;
 
 function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={HOME} element={<Home />} />
-        <Route path='*' element={<Home />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path={HOME} element={<Home />} />
+      <Route path={REGISTER} element={<Register />} />
+      <Route path='*' element={<Home />} />
+    </Routes>
   );
 }
 
