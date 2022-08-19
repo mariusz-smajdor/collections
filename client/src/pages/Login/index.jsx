@@ -12,7 +12,7 @@ import { Form, Label, Text, Info } from './styled';
 
 const { INITIAL_VALUE } = userCredentials;
 const { TOKEN } = localStorageKeys;
-const { HOME } = routes;
+const { PROFILE } = routes;
 
 function Login() {
   const [message, setMessage] = useState('');
@@ -27,7 +27,7 @@ function Login() {
       .post('http://localhost:3001/login', { user })
       .then(res => {
         localStorage.setItem(TOKEN, res.data.accessToken);
-        navigate(HOME, { state: res.data });
+        navigate(`/${PROFILE}`, { state: res.data });
         window.location.reload(false);
       })
       .catch(err => {
