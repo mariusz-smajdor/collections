@@ -1,9 +1,9 @@
 import { OuterContainer, InnerContainer } from './styled';
 
-function Container({ children }) {
+function Container({ children, medium }) {
   return (
     <OuterContainer>
-      <InnerContainer>{children}</InnerContainer>
+      <InnerContainer medium={medium}>{children}</InnerContainer>
     </OuterContainer>
   );
 }

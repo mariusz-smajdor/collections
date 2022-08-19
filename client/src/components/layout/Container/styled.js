@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const OuterContainer = styled.div`
   margin: 100px 20px;
@@ -16,4 +16,10 @@ export const InnerContainer = styled.div`
   border-radius: 20px;
   background: ${({ theme }) => theme.color.background.secondary};
   box-shadow: 0px 5px 15px 5px ${({ theme }) => theme.color.background.primary};
+
+  ${({ medium }) =>
+    medium &&
+    css`
+      max-width: ${({ theme }) => theme.breakpoint.medium}px;
+    `}
 `;
