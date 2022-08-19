@@ -60,4 +60,10 @@ export const Title = styled.h2`
   margin: 0;
   color: ${({ theme }) => theme.color.accent.primary};
   text-align: center;
+
+  ${({ subtitle }) =>
+    subtitle &&
+    css`
+      color: ${({ theme }) => theme.color.text.primary};
+    `}
 `;
