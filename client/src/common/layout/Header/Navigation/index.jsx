@@ -73,11 +73,10 @@ function Navigation() {
         )}
       </Group>
       <UserSettingsIcon onClick={() => setMobileMenu(!mobileMenu)} />
-      {theme === LIGHT ? (
-        <ThemeIcon as={RiMoonLine} onClick={handleDispatch} />
-      ) : (
-        <ThemeIcon as={RiSunLine} onClick={handleDispatch} />
-      )}
+      <ThemeIcon
+        as={theme === LIGHT ? RiMoonLine : RiSunLine}
+        onClick={handleDispatch}
+      />
     </Group>
   );
 }
