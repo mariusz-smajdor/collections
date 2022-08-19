@@ -1,5 +1,6 @@
-import { ThemeProvider } from 'styled-components';
 import { useSelector } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
 import Header from './common/layout/Header';
 import AppRoutes from './common/Routes/AppRoutes';
@@ -12,8 +13,10 @@ function App() {
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyle />
-      <Header />
-      <AppRoutes />
+      <BrowserRouter>
+        <Header />
+        <AppRoutes />
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
