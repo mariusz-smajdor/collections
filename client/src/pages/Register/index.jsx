@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-import Container from '../../common/layout/Container';
+import Container from '../../components/layout/Container';
 import { useInputValue } from '../../shared/hooks/useInputValue';
 import { userCredentials } from '../../shared/constants/userCredentials';
 import { Title, Input, Button } from '../../assets/UI';

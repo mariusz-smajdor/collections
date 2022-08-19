@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import Container from '../../common/layout/Container';
+import Container from '../../components/layout/Container';
 import { useInputValue } from '../../shared/hooks/useInputValue';
 import { userCredentials } from '../../shared/constants/userCredentials';
 import { routes } from '../../shared/constants/routes';
