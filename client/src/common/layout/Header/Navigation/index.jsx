@@ -23,12 +23,16 @@ function Navigation() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleResize = () => setWidth(window.innerWidth);
+    if (!mobileMenu) return;
+
+    function handleResize() {
+      setWidth(window.innerWidth);
+      width > MOBILE_MENU_WIDTH && setMobileMenu(false);
+    }
     window.addEventListener('resize', handleResize);
-    width > MOBILE_MENU_WIDTH && setMobileMenu(false);
 
     return () => window.removeEventListener('resize', handleResize);
-  }, [width]);
+  }, [mobileMenu, width]);
 
   function handleDispatch() {
     const currentTheme = theme === LIGHT ? DARK : LIGHT;
@@ -38,7 +42,7 @@ function Navigation() {
 
   return (
     <Group>
-      <Group $mobileMenu={mobileMenu}>
+      <Group $mobileMenu={mobileMenu} onClick={() => setMobileMenu(false)}>
         {!getLocalStorageItem(TOKEN) ? (
           <>
             <Button
