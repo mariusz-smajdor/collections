@@ -27,7 +27,7 @@ function Login() {
       .post('http://localhost:3001/login', { user })
       .then(res => {
         localStorage.setItem(TOKEN, res.data.accessToken);
-        navigate(`/${PROFILE}`, { state: res.data });
+        navigate(`/${PROFILE}`);
         window.location.reload(false);
       })
       .catch(err => {

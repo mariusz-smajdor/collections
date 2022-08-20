@@ -12,11 +12,11 @@ router.post('/', (req, res) => {
     'SELECT id, username, password, status FROM users WHERE username = ? AND password = ?',
     [username, password],
     (err, data) => {
-      if (err) res.status(500).send('Something went wrong.');
+      err && res.status(500).send('Something went wrong.');
       if (data.length) {
-        const { id, status, username } = data[0];
-        const accessToken = jwt.sign({ id, status }, process.env.JWT_TOKEN);
-        res.send({ accessToken, id, status, username });
+        const { id } = data[0];
+        const accessToken = jwt.sign({ id }, process.env.JWT_TOKEN);
+        res.send({ accessToken });
       } else {
         res.status(403).send('Wrong username or password.');
       }
