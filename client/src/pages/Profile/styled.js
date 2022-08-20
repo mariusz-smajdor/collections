@@ -10,5 +10,6 @@ export const Group = styled.div`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.small}px) {
     flex-direction: column;
-  } ;
+    padding: 20px;
+  }
 `;
