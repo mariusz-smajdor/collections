@@ -3,4 +3,5 @@ export const routes = {
   REGISTER: 'register',
   LOGIN: 'login',
   PROFILE: 'profile',
+  NEW_COLLECTION: 'new-collection',
 };

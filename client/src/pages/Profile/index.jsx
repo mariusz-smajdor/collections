@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import Container from '../../components/layout/Container';
 import { getLocalStorageItem } from '../../shared/utils/getLocalStorageItem';
 import { localStorageKeys } from '../../shared/constants/localStorageKeys';
+import { routes } from '../../shared/constants/routes';
 import { Button, Title } from '../../assets/UI';
 import { Group } from './styled';
 
 const { TOKEN } = localStorageKeys;
+const { NEW_COLLECTION } = routes;
 
 function Profile() {
   const [user, setUser] = useState('');
@@ -34,7 +37,9 @@ function Profile() {
         <Title as='h3' subtitle>
           You Have No Collections.
         </Title>
-        <Button>Add New</Button>
+        <Button as={Link} to={NEW_COLLECTION}>
+          Add New
+        </Button>
       </Group>
     </Container>
   );

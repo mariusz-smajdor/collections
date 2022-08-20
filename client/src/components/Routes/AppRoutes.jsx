@@ -3,11 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import Home from '../../pages/Home';
 import Register from '../../pages/Register';
 import Login from '../../pages/Login';
-import Profile from '../../pages/Profile';
-import { routes } from '../../shared/constants/routes';
 import PrivateRoutes from './PrivateRoutes';
+import Profile from '../../pages/Profile';
+import NewCollection from '../../pages/NewCollection';
+import { routes } from '../../shared/constants/routes';
 
-const { HOME, REGISTER, LOGIN, PROFILE } = routes;
+const { HOME, REGISTER, LOGIN, PROFILE, NEW_COLLECTION } = routes;
 
 function AppRoutes() {
   return (
@@ -16,7 +17,10 @@ function AppRoutes() {
       <Route path={REGISTER} element={<Register />} />
       <Route path={LOGIN} element={<Login />} />
       <Route element={<PrivateRoutes />}>
-        <Route path={PROFILE} element={<Profile />} />
+        <Route path={PROFILE}>
+          <Route index element={<Profile />} />
+          <Route path={NEW_COLLECTION} element={<NewCollection />} />
+        </Route>
       </Route>
       <Route path='*' element={<Home />} />
     </Routes>
