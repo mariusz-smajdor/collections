@@ -54,10 +54,18 @@ export const Input = styled.input`
   color: ${({ theme }) => theme.color.text.primary};
   outline: unset;
   resize: none;
+
+  &::file-selector-button {
+    font-weight: bold;
+    background: unset;
+    color: ${({ theme }) => theme.color.accent.primary};
+    border: unset;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 `;
 
 export const Title = styled.h2`
-  margin: 0;
   color: ${({ theme }) => theme.color.accent.primary};
   text-align: center;
 
