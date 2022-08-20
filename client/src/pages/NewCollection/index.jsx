@@ -1,3 +1,4 @@
+import NewField from './NewField';
 import Container from '../../components/layout/Container';
 import { TOPICS } from './topics';
 import { Input, Title, Button } from '../../assets/UI';
@@ -30,6 +31,7 @@ function NewCollection() {
         </Label>
         <Button>Create</Button>
       </Form>
+      <NewField />
     </Container>
   );
 }
