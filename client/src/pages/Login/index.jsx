@@ -7,8 +7,8 @@ import { useInputValue } from '../../shared/hooks/useInputValue';
 import { userCredentials } from '../../shared/constants/userCredentials';
 import { routes } from '../../shared/constants/routes';
 import { localStorageKeys } from '../../shared/constants/localStorageKeys';
-import { Title, Input, Button } from '../../assets/UI';
-import { Form, Label, Text, Info } from './styled';
+import { Form, Label, Text, Input, Button } from '../../assets/UI/formEls';
+import { Title, Message } from '../../assets/UI/textFormatEls';
 
 const { INITIAL_VALUE } = userCredentials;
 const { TOKEN } = localStorageKeys;
@@ -53,7 +53,7 @@ function Login() {
           />
         </Label>
         <Button>Submit</Button>
-        <Info>{message}</Info>
+        <Message>{message}messag 1</Message>
       </Form>
     </Container>
   );

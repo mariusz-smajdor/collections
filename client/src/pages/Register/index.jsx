@@ -4,8 +4,8 @@ import axios from 'axios';
 import Container from '../../components/layout/Container';
 import { useInputValue } from '../../shared/hooks/useInputValue';
 import { userCredentials } from '../../shared/constants/userCredentials';
-import { Title, Input, Button } from '../../assets/UI';
-import { Form, Label, Text, Info } from './styled';
+import { Form, Label, Text, Input, Button } from '../../assets/UI/formEls';
+import { Title, Message } from '../../assets/UI/textFormatEls';
 
 const { INITIAL_VALUE } = userCredentials;
 
@@ -47,7 +47,7 @@ function Register() {
           />
         </Label>
         <Button>Submit</Button>
-        <Info success={msgStatus === 'Created'}>{message}</Info>
+        <Message success={msgStatus === 'Created'}>{message}</Message>
       </Form>
     </Container>
   );

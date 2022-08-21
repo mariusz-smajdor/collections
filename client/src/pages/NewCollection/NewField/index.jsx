@@ -1,5 +1,5 @@
-import { Title, Input, Button } from '../../../assets/UI';
-import { Label, Form } from '../styled';
+import { Label, Form, Input, Button } from '../../../assets/UI/formEls';
+import { Title } from '../../../assets/UI/textFormatEls';
 
 function NewField() {
   return (

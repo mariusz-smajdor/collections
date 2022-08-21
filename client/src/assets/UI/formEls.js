@@ -1,5 +1,51 @@
 import styled, { css } from 'styled-components';
 
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.small}px) {
+    padding: 0;
+  } ;
+`;
+
+export const Label = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 15px;
+
+  @media (max-width: ${({ theme }) => theme.breakpoint.small}px) {
+    flex-direction: column;
+  }
+`;
+
+export const Text = styled.span`
+  flex-basis: 30%;
+`;
+
+export const Input = styled.input`
+  padding: 10px 20px;
+  width: 100%;
+  border: 1px solid ${({ theme }) => theme.color.text.secondary};
+  border-radius: 5px;
+  background: ${({ theme }) => theme.color.background.tertiary};
+  color: ${({ theme }) => theme.color.text.primary};
+  outline: unset;
+  resize: none;
+
+  &::file-selector-button {
+    font-weight: bold;
+    background: unset;
+    color: ${({ theme }) => theme.color.accent.primary};
+    border: unset;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+`;
+
 export const Button = styled.button`
   padding: 10px 20px;
   background: ${({ theme }) => theme.color.accent.primary};
@@ -43,35 +89,4 @@ export const Button = styled.button`
   &:active {
     filter: brightness(130%);
   }
-`;
-
-export const Input = styled.input`
-  padding: 10px 20px;
-  width: 100%;
-  border: 1px solid ${({ theme }) => theme.color.text.secondary};
-  border-radius: 5px;
-  background: ${({ theme }) => theme.color.background.tertiary};
-  color: ${({ theme }) => theme.color.text.primary};
-  outline: unset;
-  resize: none;
-
-  &::file-selector-button {
-    font-weight: bold;
-    background: unset;
-    color: ${({ theme }) => theme.color.accent.primary};
-    border: unset;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-`;
-
-export const Title = styled.h2`
-  color: ${({ theme }) => theme.color.accent.primary};
-  text-align: center;
-
-  ${({ subtitle }) =>
-    subtitle &&
-    css`
-      color: ${({ theme }) => theme.color.text.primary};
-    `}
 `;

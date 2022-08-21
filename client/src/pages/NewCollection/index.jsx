@@ -1,8 +1,8 @@
 import NewField from './NewField';
 import Container from '../../components/layout/Container';
 import { TOPICS } from './topics';
-import { Input, Title, Button } from '../../assets/UI';
-import { Form, Label, Text } from './styled';
+import { Form, Label, Text, Input, Button } from '../../assets/UI/formEls';
+import { Title } from '../../assets/UI/textFormatEls';
 
 function NewCollection() {
   return (

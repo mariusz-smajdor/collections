@@ -6,7 +6,8 @@ import Container from '../../components/layout/Container';
 import { getLocalStorageItem } from '../../shared/utils/getLocalStorageItem';
 import { localStorageKeys } from '../../shared/constants/localStorageKeys';
 import { routes } from '../../shared/constants/routes';
-import { Button, Title } from '../../assets/UI';
+import { Button } from '../../assets/UI/formEls';
+import { Title } from '../../assets/UI/textFormatEls';
 import { Group } from './styled';
 
 const { TOKEN } = localStorageKeys;

@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { RiSunLine, RiMoonLine } from 'react-icons/ri';
 
-import { Button } from '../../../../assets/UI';
 import { changeTheme } from '../../../../services/themeSlice';
 import { getLocalStorageItem } from '../../../../shared/utils/getLocalStorageItem';
 import { themeKeys } from '../../../../shared/constants/themeKeys';
 import { localStorageKeys } from '../../../../shared/constants/localStorageKeys';
 import { routes } from '../../../../shared/constants/routes';
+import { Button } from '../../../../assets/UI/formEls';
 import { Group, ThemeIcon, UserSettingsIcon } from '../styled';
 
 const { REGISTER, LOGIN } = routes;
