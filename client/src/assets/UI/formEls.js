@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
+import { Form as FormikForm, Field } from 'formik';
 
-export const Form = styled.form`
+export const Form = styled(FormikForm)`
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -26,7 +27,7 @@ export const Text = styled.span`
   flex-basis: 30%;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   padding: 10px 20px;
   width: 100%;
   border: 1px solid ${({ theme }) => theme.color.text.secondary};
