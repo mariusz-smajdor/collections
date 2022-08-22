@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 
 import Container from '../../components/layout/Container';
-import { useRequests } from '../../shared/hooks/useRequests';
+import { useSignUser } from '../../shared/hooks/useSignUser';
 import { initInputValues } from '../../shared/constants/initInputValues';
 import { Form, Label, Text, Input, Button } from '../../assets/UI/formEls';
 import { Title, Message } from '../../assets/UI/textFormatEls';
@@ -9,7 +9,7 @@ import { Title, Message } from '../../assets/UI/textFormatEls';
 const { CREDENTIALS } = initInputValues;
 
 function Login() {
-  const { message, login } = useRequests();
+  const { message, login } = useSignUser();
 
   function loginHandler(user, resetForm) {
     login(user);

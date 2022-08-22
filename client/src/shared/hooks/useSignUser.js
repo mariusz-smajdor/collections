@@ -2,13 +2,13 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-import { routes } from '../../shared/constants/routes';
-import { localStorageKeys } from '../../shared/constants/localStorageKeys';
+import { routes } from '../constants/routes';
+import { localStorageKeys } from '../constants/localStorageKeys';
 
 const { TOKEN } = localStorageKeys;
 const { PROFILE } = routes;
 
-export function useRequests() {
+export function useSignUser() {
   const [message, setMessage] = useState('');
   const [msgStatus, setMsgStatus] = useState('');
 
