@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import { Formik } from 'formik';
-import axios from 'axios';
 
 import Container from '../../components/layout/Container';
+import { useRequests } from '../../shared/hooks/useRequests';
 import { initInputValues } from '../../shared/constants/initInputValues';
 import { Form, Label, Text, Input, Button } from '../../assets/UI/formEls';
 import { Title, Message } from '../../assets/UI/textFormatEls';
@@ -10,21 +9,10 @@ import { Title, Message } from '../../assets/UI/textFormatEls';
 const { CREDENTIALS } = initInputValues;
 
 function Register() {
-  const [message, setMessage] = useState('');
-  const [msgStatus, setMsgStatus] = useState('');
+  const { message, msgStatus, register } = useRequests();
 
-  function register(user, resetForm) {
-    axios
-      .post('http://localhost:3001/register', { user })
-      .then(res => {
-        setMessage(res.data);
-        setMsgStatus(res.statusText);
-      })
-      .catch(err => {
-        setMessage(err.response.data);
-        setMsgStatus(err.response.statusText);
-      });
-
+  function registerHandler(user, resetForm) {
+    register(user);
     resetForm({ values: '' });
   }
 
@@ -32,10 +20,10 @@ function Register() {
     <Container>
       <Formik
         initialValues={CREDENTIALS}
-        onSubmit={(values, { resetForm }) => register(values, resetForm)}
+        onSubmit={(values, { resetForm }) => registerHandler(values, resetForm)}
       >
         {() => (
-          <Form onSubmit={register}>
+          <Form>
             <Title>Sign Up</Title>
             <Label>
               <Text>Username:</Text>
