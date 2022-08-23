@@ -1,43 +1,78 @@
-import { Formik } from 'formik';
+import { Field, Formik } from 'formik';
+import { useSelector } from 'react-redux';
 
 import NewField from './NewField';
 import Container from '../../components/layout/Container';
-import { TOPICS } from './topics';
 import { Form, Label, Text, Input, Button } from '../../assets/UI/formEls';
 import { Title } from '../../assets/UI/textFormatEls';
+import { INITIAL_VALUES, TOPICS } from './constants';
+import { darkStyles, lightStyles } from './fieldStyles';
+import { Icon, Item, Items } from './styled';
 
 function NewCollection() {
+  const theme = useSelector(state => state.themeToggler.theme);
+
+  function submitCollection(fields) {
+    const { itemSetters, defaultFields, itemFields, ...restFields } = fields;
+    const items = { items: { ...defaultFields, ...itemFields }, ...restFields };
+  }
+
+  function removeItem(values, setValues, item) {
+    const fields = [...values.itemFields];
+    const itemFields = fields.filter(field => field[0] !== item);
+
+    setValues({ ...values, ...itemFields });
+  }
+
   return (
     <Container medium>
-      <Formik>
-        {() => (
+      <Formik initialValues={INITIAL_VALUES} onSubmit={submitCollection}>
+        {({ values, setValues }) => (
           <Form>
             <Title>Create Collection</Title>
             <Label>
               <Text>Name:</Text>
-              <Input />
+              <Input name='name' />
             </Label>
             <Label>
               <Text>Description:</Text>
-              <Input />
+              <Input name='description' />
             </Label>
             <Label>
               <Text>Topic:</Text>
-              <Input as='select'>
+              <Field
+                name='topic'
+                as='select'
+                style={theme === 'light' ? lightStyles : darkStyles}
+              >
                 {TOPICS.map((topic, i) => (
                   <option key={i}>{topic}</option>
                 ))}
-              </Input>
+              </Field>
             </Label>
             <Label>
               <Text>Add image:</Text>
-              <Input type='file' accept='.jpg,.jpeg,.png' />
+              <Input name='image' type='file' accept='.jpg,.jpeg,.png' />
             </Label>
-            <Button>Create</Button>
+            <Title as='h3'>Item Fields</Title>
+            <Items>
+              {values.defaultFields.map(field => (
+                <span key={field[0]}>{`${field[0]} (${field[1]})`}</span>
+              ))}
+              {values.itemFields.map(field => (
+                <Item key={field[0]}>
+                  <span>{`${field[0]} (${field[1]})`}</span>
+                  <Icon
+                    onClick={() => removeItem(values, setValues, field[0])}
+                  />
+                </Item>
+              ))}
+            </Items>
+            <Button type='submit'>Create</Button>
+            <NewField values={values} setValues={setValues} />
           </Form>
         )}
       </Formik>
-      <NewField />
     </Container>
   );
 }
