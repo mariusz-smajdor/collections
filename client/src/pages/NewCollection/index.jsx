@@ -21,7 +21,7 @@ function NewCollection() {
     const fields = [...values.itemFields];
     const itemFields = fields.filter(field => field[0] !== item);
 
-    setValues({ ...values, ...itemFields });
+    setValues({ ...values, itemFields });
   }
 
   return (
