@@ -1,22 +1,27 @@
-import { useState } from 'react';
-import { Field, Formik, validateYupSchema } from 'formik';
+import { Field, Formik } from 'formik';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 
 import NewField from './NewField';
 import Container from '../../components/layout/Container';
+import { useCollection } from '../../shared/hooks/useCollection';
 import { Form, Label, Text, Input, Button } from '../../assets/UI/formEls';
-import { Title } from '../../assets/UI/textFormatEls';
+import { Message, Title } from '../../assets/UI/textFormatEls';
 import { INITIAL_VALUES, TOPICS } from './constants';
 import { darkStyles, lightStyles } from './fieldStyles';
 import { Icon, Item, Items } from './styled';
 
 function NewCollection() {
   const theme = useSelector(state => state.themeToggler.theme);
+  const { message, sendCollection } = useCollection();
 
   function submitCollection(fields) {
     const { itemSetters, defaultFields, itemFields, ...restFields } = fields;
-    const items = { items: [...defaultFields, ...itemFields], ...restFields };
+
+    const collection = {
+      items: JSON.stringify([...defaultFields, itemFields]),
+      ...restFields,
+    };
+    sendCollection(collection);
   }
 
   function removeItem(values, setValues, item) {
@@ -67,6 +72,7 @@ function NewCollection() {
             </Items>
             <Button type='submit'>Create</Button>
             <NewField values={values} setValues={setValues} />
+            <Message>{message}</Message>
           </Form>
         )}
       </Formik>

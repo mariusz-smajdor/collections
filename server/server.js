@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const registerRoute = require('./routes/register');
 const loginRoute = require('./routes/login');
 const myselfRoute = require('./routes/myself');
+const collectionRoute = require('./routes/collection');
 
 const app = express();
 dotenv.config();
@@ -17,5 +18,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);
 app.use('/myself', myselfRoute);
+app.use('/collection', collectionRoute);
 
 app.listen(process.env.PORT || 3001);
