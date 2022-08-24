@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
       err && res.status(500).send('Something went wrong.');
       if (data.length) {
         const { id } = data[0];
-        const accessToken = jwt.sign({ id }, process.env.JWT_TOKEN);
+        const accessToken = jwt.sign({ id, username }, process.env.JWT_TOKEN);
         res.send({ accessToken });
       } else {
         res.status(403).send('Wrong username or password.');

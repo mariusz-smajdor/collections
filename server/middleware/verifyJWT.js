@@ -9,6 +9,7 @@ const verifyJWT = (req, res, next) => {
         if (err) res.status(403);
         else {
           req.id = user.id;
+          req.user = user.username;
           next();
         }
       });

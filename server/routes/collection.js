@@ -17,4 +17,17 @@ router.post('/', verifyJWT, req => {
   );
 });
 
+router.get('/', verifyJWT, (req, res) => {
+  const { id, user } = req;
+
+  db.query(
+    'SELECT name, description, topic FROM collections WHERE userId = ?',
+    [id],
+    (err, data) => {
+      err?.status(500).send(err);
+      res?.status(201).send({ data, user });
+    }
+  );
+});
+
 module.exports = router;
