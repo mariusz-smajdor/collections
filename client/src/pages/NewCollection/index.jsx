@@ -14,7 +14,7 @@ function NewCollection() {
 
   function submitCollection(fields) {
     const { itemSetters, defaultFields, itemFields, ...restFields } = fields;
-    const items = { items: { ...defaultFields, ...itemFields }, ...restFields };
+    const items = { items: [...defaultFields, ...itemFields], ...restFields };
   }
 
   function removeItem(values, setValues, item) {
