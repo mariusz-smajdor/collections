@@ -11,7 +11,6 @@ export const INITIAL_VALUES = {
   name: '',
   description: '',
   topic: 'Books',
-  image: '',
   itemSetters: [{ name: '', type: 'Text' }],
   defaultFields: [
     ['Name', 'Text'],

@@ -1,5 +1,7 @@
-import { Field, Formik } from 'formik';
+import { useState } from 'react';
+import { Field, Formik, validateYupSchema } from 'formik';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 import NewField from './NewField';
 import Container from '../../components/layout/Container';
@@ -20,7 +22,6 @@ function NewCollection() {
   function removeItem(values, setValues, item) {
     const fields = [...values.itemFields];
     const itemFields = fields.filter(field => field[0] !== item);
-
     setValues({ ...values, itemFields });
   }
 
@@ -49,10 +50,6 @@ function NewCollection() {
                   <option key={i}>{topic}</option>
                 ))}
               </Field>
-            </Label>
-            <Label>
-              <Text>Add image:</Text>
-              <Input name='image' type='file' accept='.jpg,.jpeg,.png' />
             </Label>
             <Title as='h3'>Item Fields</Title>
             <Items>
