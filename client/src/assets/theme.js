@@ -24,6 +24,7 @@ export const darkTheme = {
     actions: {
       negative: '#dc3545',
       positive: '#28a745',
+      neutral: '#d58402',
     },
   },
   ...universalThemes,
@@ -46,6 +47,7 @@ export const lightTheme = {
     actions: {
       negative: '#dc3545',
       positive: '#28a745',
+      neutral: '#d58402',
     },
   },
   ...universalThemes,
