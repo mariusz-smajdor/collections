@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { RiDeleteBinLine, RiSettings3Line } from 'react-icons/ri';
 import { useSelector, useDispatch } from 'react-redux';
+import { RiDeleteBin2Line, RiSettings3Line } from 'react-icons/ri';
 import axios from 'axios';
 
 import Container from '../../components/layout/Container';
@@ -61,8 +61,13 @@ function Profile() {
               </Field>
             </Fields>
             <Settings>
-              <Icon as={RiSettings3Line} $settings />
-              <Icon as={RiDeleteBinLine} onClick={() => deleteCollection(id)} />
+              <Link to={`item/${name}`}>
+                <Icon as={RiSettings3Line} $settings />
+              </Link>
+              <Icon
+                as={RiDeleteBin2Line}
+                onClick={() => deleteCollection(id)}
+              />
             </Settings>
           </Collection>
         </Collections>
