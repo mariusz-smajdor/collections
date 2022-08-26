@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import { RiDeleteBinLine, RiSettings3Line } from 'react-icons/ri';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 
 import Container from '../../components/layout/Container';
-import { useGetCollection } from '../../shared/hooks/useGetCollection';
+import { removeCollection } from '../../services/collectionsSlice';
+import { useGetCollections } from '../../shared/hooks/useGetCollections';
 import { routes } from '../../shared/constants/routes';
 import { Button } from '../../assets/UI/formEls';
 import { Title } from '../../assets/UI/textFormatEls';
@@ -20,11 +23,18 @@ import {
 const { NEW_COLLECTION } = routes;
 
 function Profile() {
-  const { user, data: collections } = useGetCollection();
+  const { collections } = useSelector(state => state.collections);
+  const dispatch = useDispatch();
+  useGetCollections();
+
+  function deleteCollection(id) {
+    axios.delete(`http://localhost:3001/collection/${id}`);
+    dispatch(removeCollection(id));
+  }
 
   return (
     <Container medium>
-      <Title>Hello, {user}</Title>
+      <Title>Hello, {collections?.user}</Title>
       <Group>
         <Title as='h3' subtitle>
           {collections ? 'Your Collections:' : 'You Have No Collections.'}
@@ -33,8 +43,8 @@ function Profile() {
           Add New
         </Button>
       </Group>
-      {collections?.map(({ name, description, topic }, i) => (
-        <Collections key={i}>
+      {collections?.data?.map(({ id, name, description, topic }) => (
+        <Collections key={id}>
           <Collection>
             <Fields>
               <Field>
@@ -51,8 +61,8 @@ function Profile() {
               </Field>
             </Fields>
             <Settings>
-              <Icon as={RiSettings3Line} settings />
-              <Icon as={RiDeleteBinLine} />
+              <Icon as={RiSettings3Line} $settings />
+              <Icon as={RiDeleteBinLine} onClick={() => deleteCollection(id)} />
             </Settings>
           </Collection>
         </Collections>

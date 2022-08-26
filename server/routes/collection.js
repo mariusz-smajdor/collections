@@ -21,13 +21,22 @@ router.get('/', verifyJWT, (req, res) => {
   const { id, user } = req;
 
   db.query(
-    'SELECT name, description, topic FROM collections WHERE userId = ?',
+    'SELECT id, name, description, topic FROM collections WHERE userId = ?',
     [id],
     (err, data) => {
       err?.status(500).send(err);
       res?.status(201).send({ data, user });
     }
   );
+});
+
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+
+  db.query('DELETE FROM collections WHERE id = ?', [id], (err, data) => {
+    if (err) console.log(err);
+    if (data) console.log(data);
+  });
 });
 
 module.exports = router;
