@@ -69,8 +69,8 @@ export const Icon = styled.p`
   color: ${({ theme }) => theme.color.actions.negative};
   transition: filter 0.3s;
 
-  ${({ settings }) =>
-    settings &&
+  ${({ $settings }) =>
+    $settings &&
     css`
       color: ${({ theme }) => theme.color.actions.neutral};
     `}
