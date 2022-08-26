@@ -31,10 +31,6 @@ export const Collection = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoint.small}px) {
     flex-direction: column;
   }
-
-  &:hover {
-    border-bottom: 2px solid ${({ theme }) => theme.color.accent.primary};
-  }
 `;
 
 export const Fields = styled.p`
@@ -64,7 +60,7 @@ export const Settings = styled.div`
   }
 `;
 
-export const Icon = styled.p`
+export const Icon = styled.span`
   font-size: 1.5rem;
   color: ${({ theme }) => theme.color.actions.negative};
   transition: filter 0.3s;
