@@ -20,4 +20,10 @@ export const InnerContainer = styled.div`
     css`
       max-width: ${({ theme }) => theme.breakpoint.medium}px;
     `}
+
+  ${({ big }) =>
+    big &&
+    css`
+      max-width: ${({ theme }) => theme.breakpoint.big}px;
+    `}
 `;
