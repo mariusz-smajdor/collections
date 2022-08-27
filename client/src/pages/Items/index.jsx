@@ -13,13 +13,13 @@ function Items() {
 
   const collection = collections?.data.find(col => col.name === id);
 
-  console.log(collections?.data);
-
   return (
-    <Container>
-      <Title>{collection?.name}</Title>
-      <p>Topic: {collection?.topic}</p>
-      <p>Description: {collection?.description}</p>
+    <Container big>
+      <div>
+        <Title>{collection?.name}</Title>
+        <p>Topic: {collection?.topic}</p>
+        <p>Description: {collection?.description}</p>
+      </div>
       <Table items={collection?.items} />
     </Container>
   );
