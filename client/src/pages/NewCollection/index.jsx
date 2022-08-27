@@ -47,11 +47,11 @@ function NewCollection() {
             <Title>Create Collection</Title>
             <Label>
               <Text>Name:</Text>
-              <Input name='name' />
+              <Input name='name' required />
             </Label>
             <Label>
               <Text>Description:</Text>
-              <Input name='description' />
+              <Input name='description' required />
             </Label>
             <Label>
               <Text>Topic:</Text>
