@@ -1,8 +1,11 @@
 import { Field, Formik } from 'formik';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import NewField from './NewField';
 import Container from '../../components/layout/Container';
+import { addCollection } from '../../services/collectionsSlice';
+import { routes } from '../../shared/constants/routes';
 import { useCollection } from '../../shared/hooks/useCollection';
 import { Form, Label, Text, Input, Button } from '../../assets/UI/formEls';
 import { Message, Title } from '../../assets/UI/textFormatEls';
@@ -10,9 +13,13 @@ import { INITIAL_VALUES, TOPICS } from './constants';
 import { darkStyles, lightStyles } from './fieldStyles';
 import { Icon, Item, Items } from './styled';
 
+const { PROFILE } = routes;
+
 function NewCollection() {
   const theme = useSelector(state => state.themeToggler.theme);
   const { message, sendCollection } = useCollection();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function submitCollection(fields) {
     const { itemSetters, defaultFields, itemFields, ...restFields } = fields;
@@ -22,6 +29,8 @@ function NewCollection() {
       ...restFields,
     };
     sendCollection(collection);
+    dispatch(addCollection(collection));
+    navigate(`/${PROFILE}`);
   }
 
   function removeItem(values, setValues, item) {

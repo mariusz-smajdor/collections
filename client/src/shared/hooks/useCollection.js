@@ -1,17 +1,13 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { getLocalStorageItem } from '../utils/getLocalStorageItem';
 import { localStorageKeys } from '../constants/localStorageKeys';
-import { routes } from '../constants/routes';
 
-const { PROFILE } = routes;
 const { TOKEN } = localStorageKeys;
 
 export function useCollection() {
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
 
   function sendCollection(collection) {
     axios
@@ -24,7 +20,6 @@ export function useCollection() {
           },
         }
       )
-      .then(navigate(`/${PROFILE}`))
       .catch(err => {
         setMessage(err.response.data);
         err.response.status === 403 && localStorage.removeItem('token');

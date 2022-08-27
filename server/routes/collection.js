@@ -21,7 +21,7 @@ router.get('/', verifyJWT, (req, res) => {
   const { id, user } = req;
 
   db.query(
-    'SELECT id, name, description, topic FROM collections WHERE userId = ?',
+    'SELECT id, name, description, topic, items FROM collections WHERE userId = ?',
     [id],
     (err, data) => {
       err?.status(500).send(err);
@@ -30,7 +30,7 @@ router.get('/', verifyJWT, (req, res) => {
   );
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', req => {
   const { id } = req.params;
 
   db.query('DELETE FROM collections WHERE id = ?', [id], (err, data) => {
