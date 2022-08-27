@@ -25,7 +25,7 @@ function NewCollection() {
     const { itemSetters, defaultFields, itemFields, ...restFields } = fields;
 
     const collection = {
-      items: JSON.stringify([...defaultFields, itemFields]),
+      items: JSON.stringify([...defaultFields, ...itemFields]),
       ...restFields,
     };
     sendCollection(collection);
