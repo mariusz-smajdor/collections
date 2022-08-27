@@ -6,7 +6,7 @@ import Table from './Table';
 import { useGetCollections } from '../../shared/hooks/useGetCollections';
 import { Title } from '../../assets/UI/textFormatEls';
 
-function Item() {
+function Items() {
   const { id } = useParams();
   const { collections } = useSelector(state => state.collections);
   useGetCollections();
@@ -25,4 +25,4 @@ function Item() {
   );
 }
 
-export default Item;
+export default Items;

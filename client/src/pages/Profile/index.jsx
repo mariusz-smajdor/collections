@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RiDeleteBin2Line, RiSettings3Line } from 'react-icons/ri';
 import axios from 'axios';
 
 import Container from '../../components/layout/Container';
-import { removeCollection } from '../../services/collectionsSlice';
 import { useGetCollections } from '../../shared/hooks/useGetCollections';
+import { removeCollection } from '../../services/collectionsSlice';
 import { routes } from '../../shared/constants/routes';
 import { Button } from '../../assets/UI/formEls';
 import { Title } from '../../assets/UI/textFormatEls';
@@ -20,11 +20,12 @@ import {
   Icon,
 } from './styled';
 
-const { NEW_COLLECTION } = routes;
+const { NEW_COLLECTION, ITEMS } = routes;
 
 function Profile() {
   const { collections } = useSelector(state => state.collections);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useGetCollections();
 
   function deleteCollection(id) {
@@ -32,19 +33,25 @@ function Profile() {
     dispatch(removeCollection(id));
   }
 
+  function manageCollection(name) {
+    navigate(ITEMS + name);
+  }
+
   return (
     <Container medium>
       <Title>Hello, {collections?.user}</Title>
       <Group>
         <Title as='h3' subtitle>
-          {collections ? 'Your Collections:' : 'You Have No Collections.'}
+          {collections?.data?.length
+            ? 'Your Collections:'
+            : 'You Have No Collections.'}
         </Title>
         <Button as={Link} to={NEW_COLLECTION}>
           Add New
         </Button>
       </Group>
       {collections?.data?.map(({ id, name, description, topic }) => (
-        <Collections key={id}>
+        <Collections key={name}>
           <Collection>
             <Fields>
               <Field>
@@ -61,9 +68,11 @@ function Profile() {
               </Field>
             </Fields>
             <Settings>
-              <Link to={`item/${name}`}>
-                <Icon as={RiSettings3Line} $settings />
-              </Link>
+              <Icon
+                as={RiSettings3Line}
+                $settings
+                onClick={() => manageCollection(name)}
+              />
               <Icon
                 as={RiDeleteBin2Line}
                 onClick={() => deleteCollection(id)}

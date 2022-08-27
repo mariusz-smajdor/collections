@@ -6,10 +6,10 @@ import Login from '../../pages/Login';
 import PrivateRoutes from './PrivateRoutes';
 import Profile from '../../pages/Profile';
 import NewCollection from '../../pages/NewCollection';
-import Item from '../../pages/Item';
+import Items from '../../pages/Items';
 import { routes } from '../../shared/constants/routes';
 
-const { HOME, REGISTER, LOGIN, PROFILE, NEW_COLLECTION, ITEM } = routes;
+const { HOME, REGISTER, LOGIN, PROFILE, NEW_COLLECTION, ITEMS } = routes;
 
 function AppRoutes() {
   return (
@@ -21,7 +21,7 @@ function AppRoutes() {
         <Route path={PROFILE}>
           <Route index element={<Profile />}></Route>
           <Route path={NEW_COLLECTION} element={<NewCollection />} />
-          <Route path={`${ITEM}:id`} element={<Item />} />
+          <Route path={`${ITEMS}:id`} element={<Items />} />
         </Route>
       </Route>
       <Route path='*' element={<Home />} />

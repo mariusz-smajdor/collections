@@ -4,5 +4,5 @@ export const routes = {
   LOGIN: 'login',
   PROFILE: 'profile',
   NEW_COLLECTION: 'new-collection',
-  ITEM: 'item/',
+  ITEMS: 'items/',
 };
