@@ -1,5 +1,5 @@
-import { Field, Formik } from 'formik';
-import { useSelector, useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import NewField from './NewField';
@@ -9,82 +9,76 @@ import { routes } from '../../shared/constants/routes';
 import { useCollection } from '../../shared/hooks/useCollection';
 import { Form, Label, Text, Input, Button } from '../../assets/UI/formEls';
 import { Message, Title } from '../../assets/UI/textFormatEls';
-import { INITIAL_VALUES, TOPICS } from './constants';
-import { darkStyles, lightStyles } from './fieldStyles';
-import { Icon, Item, Items } from './styled';
+import { TOPICS } from './constants';
 
 const { PROFILE } = routes;
 
 function NewCollection() {
-  const theme = useSelector(state => state.themeToggler.theme);
-  const { message, sendCollection } = useCollection();
+  const {
+    register,
+    watch,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  const { message, sendCollection } = useCollection();
 
   function submitCollection(fields) {
-    const { itemSetters, defaultFields, itemFields, ...restFields } = fields;
-
     const collection = {
-      items: JSON.stringify([...defaultFields, ...itemFields]),
-      ...restFields,
+      ...fields,
+      items: JSON.stringify(fields.items),
     };
-    sendCollection(collection);
-    dispatch(addCollection(collection));
-    navigate(`/${PROFILE}`);
-  }
 
-  function removeItem(values, setValues, item) {
-    const fields = [...values.itemFields];
-    const itemFields = fields.filter(field => field[0] !== item);
-    setValues({ ...values, itemFields });
+    sendCollection(collection);
+    navigate(`/${PROFILE}`);
   }
 
   return (
     <Container medium>
-      <Formik initialValues={INITIAL_VALUES} onSubmit={submitCollection}>
-        {({ values, setValues }) => (
-          <Form>
-            <Title>Create Collection</Title>
-            <Label>
-              <Text>Name:</Text>
-              <Input name='name' required />
-            </Label>
-            <Label>
-              <Text>Description:</Text>
-              <Input name='description' required />
-            </Label>
-            <Label>
-              <Text>Topic:</Text>
-              <Field
-                name='topic'
-                as='select'
-                style={theme === 'light' ? lightStyles : darkStyles}
-              >
-                {TOPICS.map((topic, i) => (
-                  <option key={i}>{topic}</option>
-                ))}
-              </Field>
-            </Label>
-            <Title as='h3'>Item Fields</Title>
-            <Items>
-              {values.defaultFields.map(field => (
-                <span key={field[0]}>{`${field[0]} (${field[1]})`}</span>
-              ))}
-              {values.itemFields.map(field => (
-                <Item key={field[0]}>
-                  <span>{`${field[0]} (${field[1]})`}</span>
-                  <Icon
-                    onClick={() => removeItem(values, setValues, field[0])}
-                  />
-                </Item>
-              ))}
-            </Items>
-            <Button type='submit'>Create</Button>
-            <NewField values={values} setValues={setValues} />
-            <Message>{message}</Message>
-          </Form>
+      <Form onSubmit={handleSubmit(submitCollection)}>
+        <Title>Create Collection</Title>
+        <Label>
+          <Text>Name:</Text>
+          <Input
+            {...register('name', { required: 'This field must not be empty.' })}
+          />
+        </Label>
+        {errors.name?.message && <Message>{errors.name?.message}</Message>}
+        <Label>
+          <Text>Description:</Text>
+          <Input
+            {...register('description', {
+              required: 'This field must not be empty.',
+            })}
+          />
+        </Label>
+        {errors.description?.message && (
+          <Message>{errors.description?.message}</Message>
         )}
-      </Formik>
+        <Label>
+          <Text>Topic:</Text>
+          <Input
+            as='select'
+            {...register('topic', {
+              required: 'This field must not be empty.',
+            })}
+          >
+            {TOPICS.map(topic => (
+              <option key={topic}>{topic}</option>
+            ))}
+          </Input>
+        </Label>
+        <Button type='submit'>Create</Button>
+        <Message>{message}</Message>
+      </Form>
+      <NewField
+        register={register}
+        control={control}
+        watch={watch}
+        errors={errors}
+      />
     </Container>
   );
 }

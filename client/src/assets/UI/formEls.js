@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
-import { Form as FormikForm, Field } from 'formik';
 
-export const Form = styled(FormikForm)`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -27,7 +26,7 @@ export const Text = styled.span`
   flex-basis: 30%;
 `;
 
-export const Input = styled(Field)`
+export const Input = styled.input`
   padding: 10px 20px;
   width: 100%;
   border: 1px solid ${({ theme }) => theme.color.text.secondary};
@@ -35,16 +34,6 @@ export const Input = styled(Field)`
   background: ${({ theme }) => theme.color.background.tertiary};
   color: ${({ theme }) => theme.color.text.primary};
   outline: unset;
-  resize: none;
-
-  &::file-selector-button {
-    font-weight: bold;
-    background: unset;
-    color: ${({ theme }) => theme.color.accent.primary};
-    border: unset;
-    border-radius: 5px;
-    cursor: pointer;
-  }
 `;
 
 export const Button = styled.button`

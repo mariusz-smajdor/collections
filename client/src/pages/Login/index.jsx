@@ -1,43 +1,45 @@
-import { Formik } from 'formik';
+import { useForm } from 'react-hook-form';
 
 import Container from '../../components/layout/Container';
 import { useSignUser } from '../../shared/hooks/useSignUser';
-import { initInputValues } from '../../shared/constants/initInputValues';
 import { Form, Label, Text, Input, Button } from '../../assets/UI/formEls';
 import { Title, Message } from '../../assets/UI/textFormatEls';
 
-const { CREDENTIALS } = initInputValues;
-
 function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { message, login } = useSignUser();
-
-  function loginHandler(user, resetForm) {
-    login(user);
-    resetForm({ values: '' });
-  }
 
   return (
     <Container>
-      <Formik
-        initialValues={CREDENTIALS}
-        onSubmit={(values, { resetForm }) => loginHandler(values, resetForm)}
-      >
-        {() => (
-          <Form>
-            <Title>Sign In</Title>
-            <Label>
-              <Text>Username:</Text>
-              <Input name='username' required />
-            </Label>
-            <Label>
-              <Text>Password:</Text>
-              <Input name='password' type='password' required />
-            </Label>
-            <Button type='submit'>Submit</Button>
-            <Message>{message}</Message>
-          </Form>
+      <Form onSubmit={handleSubmit(user => login(user))}>
+        <Title>Sign In</Title>
+        <Label>
+          <Text>Username:</Text>
+          <Input
+            {...register('username', { required: 'Username is required.' })}
+            type='text'
+          />
+        </Label>
+        {errors.username?.message && (
+          <Message>{errors.username?.message}</Message>
         )}
-      </Formik>
+        <Label>
+          <Text>Password:</Text>
+          <Input
+            {...register('password', { required: 'Password is required.' })}
+            type='password'
+          />
+        </Label>
+        {errors.password?.message && (
+          <Message>{errors.password?.message}</Message>
+        )}
+        <Button type='submit'>Submit</Button>
+        {message && <Message>{message}</Message>}
+      </Form>
     </Container>
   );
 }

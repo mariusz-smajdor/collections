@@ -3,17 +3,9 @@ import { RiDeleteBack2Line } from 'react-icons/ri';
 
 export const Items = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 20px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0 20px;
-`;
-
-export const Item = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  margin-bottom: 40px;
 `;
 
 export const Icon = styled(RiDeleteBack2Line)`

@@ -5,10 +5,8 @@ export const collectionsSlice = createSlice({
   initialState: {},
   reducers: {
     setCollections: (state, { payload }) => {
+      console.log(state);
       state.collections = payload;
-    },
-    addCollection: ({ collections }, { payload }) => {
-      collections.data.push(payload);
     },
     removeCollection: ({ collections }, { payload }) => {
       const index = collections.data.findIndex(({ id }) => id === payload);

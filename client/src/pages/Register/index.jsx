@@ -1,43 +1,49 @@
-import { Formik } from 'formik';
+import { useForm } from 'react-hook-form';
 
 import Container from '../../components/layout/Container';
 import { useSignUser } from '../../shared/hooks/useSignUser';
-import { initInputValues } from '../../shared/constants/initInputValues';
 import { Form, Label, Text, Input, Button } from '../../assets/UI/formEls';
 import { Title, Message } from '../../assets/UI/textFormatEls';
 
-const { CREDENTIALS } = initInputValues;
-
 function Register() {
-  const { message, msgStatus, register } = useSignUser();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  function registerHandler(user, resetForm) {
-    register(user);
-    resetForm({ values: '' });
-  }
+  const { message, msgStatus, register: registerUser } = useSignUser();
 
   return (
     <Container>
-      <Formik
-        initialValues={CREDENTIALS}
-        onSubmit={(values, { resetForm }) => registerHandler(values, resetForm)}
-      >
-        {() => (
-          <Form>
-            <Title>Sign Up</Title>
-            <Label>
-              <Text>Username:</Text>
-              <Input name='username' required />
-            </Label>
-            <Label>
-              <Text>Password:</Text>
-              <Input type='password' name='password' required />
-            </Label>
-            <Button>Submit</Button>
-            <Message success={msgStatus === 'Created'}>{message}</Message>
-          </Form>
+      <Form onSubmit={handleSubmit(user => registerUser(user))}>
+        <Title>Sign Up</Title>
+        <Label>
+          <Text>Username:</Text>
+          <Input
+            {...register('username', { required: 'Username is required' })}
+          />
+        </Label>
+        {errors.username?.message && (
+          <Message>{errors.username?.message}</Message>
         )}
-      </Formik>
+        <Label>
+          <Text>Password:</Text>
+          <Input
+            type='password'
+            {...register('password', {
+              required: 'Password is required',
+            })}
+          />
+        </Label>
+        {errors.password?.message && (
+          <Message>{errors.password?.message}</Message>
+        )}
+        <Button>Submit</Button>
+        {message && (
+          <Message success={msgStatus === 'Created'}>{message}</Message>
+        )}
+      </Form>
     </Container>
   );
 }
