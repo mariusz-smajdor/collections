@@ -16,7 +16,6 @@ const { PROFILE } = routes;
 function NewCollection() {
   const {
     register,
-    watch,
     control,
     handleSubmit,
     formState: { errors },
@@ -28,7 +27,7 @@ function NewCollection() {
   function submitCollection(fields) {
     const collection = {
       ...fields,
-      items: JSON.stringify(fields.items),
+      items: JSON.stringify(fields.items).trim(),
     };
 
     sendCollection(collection);
@@ -73,12 +72,7 @@ function NewCollection() {
         <Button type='submit'>Create</Button>
         <Message>{message}</Message>
       </Form>
-      <NewField
-        register={register}
-        control={control}
-        watch={watch}
-        errors={errors}
-      />
+      <NewField register={register} control={control} errors={errors} />
     </Container>
   );
 }

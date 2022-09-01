@@ -11,26 +11,30 @@ import ItemForm from './ItemForm';
 
 function Items() {
   const [collection, setCollection] = useState(null);
-  const [itemFields, setItemFields] = useState([]);
   const { id } = useParams();
   const { collections } = useSelector(state => state.collections);
   useGetCollections();
 
   useEffect(() => {
-    setCollection(collections?.data.find(col => col.name === id));
-    if (collection) setItemFields(JSON.parse(collection.items));
+    !collection &&
+      setCollection(collections?.data.filter(col => col.name === id));
+
+    console.log(collection);
   }, [collection, id, collections]);
 
   return (
     <Container big>
       <Title>Collection</Title>
       <Group>
-        <Subject>Name: {collection?.name}</Subject>
-        <Subject>Topic: {collection?.topic}</Subject>
-        <Subject>Description: {collection?.description}</Subject>
+        <Subject>Name: {collection?.[0].name}</Subject>
+        <Subject>Topic: {collection?.[0].topic}</Subject>
+        <Subject>Description: {collection?.[0].description}</Subject>
       </Group>
-      <Table itemFields={itemFields} />
-      <ItemForm itemFields={itemFields} />
+      <Table />
+      <ItemForm
+        items={collection && JSON.parse(collection?.[0].items)}
+        id={collection?.[0].id}
+      />
     </Container>
   );
 }

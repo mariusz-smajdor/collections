@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useFieldArray } from 'react-hook-form';
 
 import { SELECT_TYPE } from '../constants';
-import { Label, Input, Button, Form, Text } from '../../../assets/UI/formEls';
+import { Label, Input, Button, Text } from '../../../assets/UI/formEls';
 import { Message, Title } from '../../../assets/UI/textFormatEls';
 import { Item, Items } from '../styled';
 
@@ -32,8 +32,8 @@ function NewField({ register, control, errors }) {
             <Label>
               <Text>Field type:</Text>
               <Input as='select' {...register(`items[${index}].options`)}>
-                {SELECT_TYPE.map(({ content }) => (
-                  <option key={content} value={content}>
+                {SELECT_TYPE.map(({ content, options }) => (
+                  <option key={content} value={JSON.stringify(options)}>
                     {content}
                   </option>
                 ))}

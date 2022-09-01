@@ -5,7 +5,6 @@ export const collectionsSlice = createSlice({
   initialState: {},
   reducers: {
     setCollections: (state, { payload }) => {
-      console.log(state);
       state.collections = payload;
     },
     removeCollection: ({ collections }, { payload }) => {

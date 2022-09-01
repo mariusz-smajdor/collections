@@ -7,14 +7,6 @@ export const TOPICS = [
   'Cards',
 ];
 
-export const INITIAL_VALUES = {
-  defaultItems: [
-    { content: 'Name', options: { type: 'text' } },
-    { content: 'Tags', options: { type: 'text' } },
-  ],
-  addedItems: [],
-};
-
 export const SELECT_TYPE = [
   { content: 'Text', options: { type: 'text' } },
   { content: 'Integer', options: { type: 'number', step: 1 } },
